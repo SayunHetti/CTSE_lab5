@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "9284a840-14cb-4818-905f-6a2c44fd81db",
+		"name": "CTSE Lab5 - Microservices",
+		"description": "API endpoints for CTSE Lab5 microservice architecture.\n\nServices routed through the API Gateway:\n- item-service    → /api/items\n- order-service   → /api/orders\n- payment-service → /api/payments\n\nSet the `baseUrl` collection variable to switch between environments.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33657200"
+	},
+	"item": [
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "Get All Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"items"
+							]
+						},
+						"description": "Returns a list of all items in inventory."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Item by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/items/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"items",
+								"1"
+							]
+						},
+						"description": "Returns a single item by its ID. Returns 404 if not found."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Widget\",\n  \"description\": \"A sample widget\",\n  \"price\": 9.99,\n  \"quantity\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"items"
+							]
+						},
+						"description": "Creates a new inventory item. Returns 201 Created with the new item."
+					},
+					"response": []
+				}
+			],
+			"description": "Manage inventory items (via gateway → item-service:8081)"
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						},
+						"description": "Returns a list of all orders."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"1"
+							]
+						},
+						"description": "Returns a single order by its ID. Returns 404 if not found."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders by Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/customer/cust-001",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"customer",
+								"cust-001"
+							]
+						},
+						"description": "Returns all orders placed by a specific customer ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"itemId\": 1,\n  \"customerId\": \"cust-001\",\n  \"quantity\": 2,\n  \"totalPrice\": 19.98\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						},
+						"description": "Creates a new order. Status defaults to PENDING. Returns 201 Created."
+					},
+					"response": []
+				}
+			],
+			"description": "Create and manage customer orders (via gateway → order-service:8082)"
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Get All Payments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/payments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments"
+							]
+						},
+						"description": "Returns a list of all payments."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/payments/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"1"
+							]
+						},
+						"description": "Returns a single payment by its ID. Returns 404 if not found."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment by Order ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/payments/order/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"order",
+								"1"
+							]
+						},
+						"description": "Returns the payment associated with a specific order ID. Returns 404 if no payment exists for that order."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderId\": 1,\n  \"amount\": 19.98,\n  \"paymentMethod\": \"CREDIT_CARD\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments"
+							]
+						},
+						"description": "Creates a new payment. Status defaults to PENDING.\n\nValid paymentMethod values:\n- CREDIT_CARD\n- DEBIT_CARD\n- PAYPAL\n- BANK_TRANSFER\n\nReturns 201 Created."
+					},
+					"response": []
+				}
+			],
+			"description": "Process and track payments (via gateway → payment-service:8083)"
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string",
+			"description": "API Gateway base URL. Change to http://localhost:<port> for direct service access."
+		}
+	]
+}
