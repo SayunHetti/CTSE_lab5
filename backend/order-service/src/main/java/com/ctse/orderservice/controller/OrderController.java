@@ -38,26 +38,5 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.save(order));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order order) {
-        return orderService.update(id, order)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
 
-    @PatchMapping("/{id}/status")
-    public ResponseEntity<Order> updateOrderStatus(@PathVariable Long id,
-            @RequestParam String status) {
-        return orderService.updateStatus(id, status)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        if (orderService.deleteById(id)) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
 }

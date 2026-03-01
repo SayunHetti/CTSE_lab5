@@ -30,28 +30,4 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
 
-    public Optional<Payment> updateStatus(Long id, String status) {
-        return paymentRepository.findById(id).map(existing -> {
-            existing.setStatus(status);
-            return paymentRepository.save(existing);
-        });
-    }
-
-    public Optional<Payment> update(Long id, Payment updatedPayment) {
-        return paymentRepository.findById(id).map(existing -> {
-            existing.setOrderId(updatedPayment.getOrderId());
-            existing.setAmount(updatedPayment.getAmount());
-            existing.setPaymentMethod(updatedPayment.getPaymentMethod());
-            existing.setStatus(updatedPayment.getStatus());
-            return paymentRepository.save(existing);
-        });
-    }
-
-    public boolean deleteById(Long id) {
-        if (paymentRepository.existsById(id)) {
-            paymentRepository.deleteById(id);
-            return true;
-        }
-        return false;
-    }
 }

@@ -25,22 +25,4 @@ public class ItemService {
     public Item save(Item item) {
         return itemRepository.save(item);
     }
-
-    public Optional<Item> update(Long id, Item updatedItem) {
-        return itemRepository.findById(id).map(existing -> {
-            existing.setName(updatedItem.getName());
-            existing.setDescription(updatedItem.getDescription());
-            existing.setPrice(updatedItem.getPrice());
-            existing.setQuantity(updatedItem.getQuantity());
-            return itemRepository.save(existing);
-        });
-    }
-
-    public boolean deleteById(Long id) {
-        if (itemRepository.existsById(id)) {
-            itemRepository.deleteById(id);
-            return true;
-        }
-        return false;
-    }
 }

@@ -208,8 +208,7 @@ Manages the product/item inventory.
 | `GET`    | `/api/items`      | List all items             |
 | `GET`    | `/api/items/{id}` | Get a single item by ID    |
 | `POST`   | `/api/items`      | Create a new item          |
-| `PUT`    | `/api/items/{id}` | Replace an item completely |
-| `DELETE` | `/api/items/{id}` | Delete an item             |
+
 
 **Examples:**
 
@@ -222,16 +221,7 @@ curl -X POST http://localhost:8080/api/items \
 # List all
 curl http://localhost:8080/api/items
 
-# Get one
-curl http://localhost:8080/api/items/1
 
-# Update
-curl -X PUT http://localhost:8080/api/items/1 \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Updated Widget","description":"Updated","price":14.99,"quantity":50}'
-
-# Delete
-curl -X DELETE http://localhost:8080/api/items/1
 ```
 
 ---
@@ -262,9 +252,7 @@ Creates and tracks customer orders. Orders default to `PENDING` status on creati
 | `GET`    | `/api/orders/{id}`                         | Get a single order by ID    |
 | `GET`    | `/api/orders/customer/{customerId}`        | List orders for a customer  |
 | `POST`   | `/api/orders`                              | Create a new order          |
-| `PUT`    | `/api/orders/{id}`                         | Replace an order completely |
-| `PATCH`  | `/api/orders/{id}/status?status=CONFIRMED` | Update order status only    |
-| `DELETE` | `/api/orders/{id}`                         | Delete an order             |
+
 
 **Examples:**
 
@@ -277,8 +265,7 @@ curl -X POST http://localhost:8080/api/orders \
 # Get orders for a customer
 curl http://localhost:8080/api/orders/customer/cust-001
 
-# Update status to CONFIRMED
-curl -X PATCH "http://localhost:8080/api/orders/1/status?status=CONFIRMED"
+
 ```
 
 ---
@@ -310,9 +297,6 @@ Processes and tracks payments linked to orders. Payments default to `PENDING` st
 | `GET`    | `/api/payments/{id}`                         | Get a single payment by ID     |
 | `GET`    | `/api/payments/order/{orderId}`              | Get payment linked to an order |
 | `POST`   | `/api/payments`                              | Create a new payment           |
-| `PUT`    | `/api/payments/{id}`                         | Replace a payment completely   |
-| `PATCH`  | `/api/payments/{id}/status?status=COMPLETED` | Update payment status only     |
-| `DELETE` | `/api/payments/{id}`                         | Delete a payment               |
 
 **Examples:**
 
@@ -325,8 +309,7 @@ curl -X POST http://localhost:8080/api/payments \
 # Get payment by order ID
 curl http://localhost:8080/api/payments/order/1
 
-# Mark payment as completed
-curl -X PATCH "http://localhost:8080/api/payments/1/status?status=COMPLETED"
+
 ```
 
 ---

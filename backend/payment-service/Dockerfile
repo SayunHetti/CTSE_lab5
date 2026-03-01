@@ -5,7 +5,6 @@ WORKDIR /app
 # Copy parent POM
 COPY pom.xml .
 
-# Copy ALL module POMs so Maven can resolve the multi-module structure
 COPY item-service/pom.xml    item-service/pom.xml
 COPY order-service/pom.xml   order-service/pom.xml
 COPY payment-service/pom.xml payment-service/pom.xml

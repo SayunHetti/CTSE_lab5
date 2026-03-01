@@ -30,29 +30,4 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Optional<Order> updateStatus(Long id, String status) {
-        return orderRepository.findById(id).map(existing -> {
-            existing.setStatus(status);
-            return orderRepository.save(existing);
-        });
-    }
-
-    public Optional<Order> update(Long id, Order updatedOrder) {
-        return orderRepository.findById(id).map(existing -> {
-            existing.setItemId(updatedOrder.getItemId());
-            existing.setCustomerId(updatedOrder.getCustomerId());
-            existing.setQuantity(updatedOrder.getQuantity());
-            existing.setTotalPrice(updatedOrder.getTotalPrice());
-            existing.setStatus(updatedOrder.getStatus());
-            return orderRepository.save(existing);
-        });
-    }
-
-    public boolean deleteById(Long id) {
-        if (orderRepository.existsById(id)) {
-            orderRepository.deleteById(id);
-            return true;
-        }
-        return false;
-    }
 }

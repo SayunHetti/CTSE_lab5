@@ -33,19 +33,4 @@ public class ItemController {
         Item saved = itemService.save(item);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody Item item) {
-        return itemService.update(id, item)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
-        if (itemService.deleteById(id)) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
 }
